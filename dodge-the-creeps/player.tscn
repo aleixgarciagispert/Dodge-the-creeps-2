@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://u3wpwpmhuaxf" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://bgkglwamhdna6" path="res://art/playerGrey_up1.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bo0j1mh0kyuyu" path="res://art/playerGrey_up2.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://yfyt1rfwmf2s" path="res://art/playerGrey_walk1.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://dsi127va15ys6" path="res://art/playerGrey_walk2.png" id="5_2hs0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vrf1b"]
 animations = [{
@@ -12,6 +14,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_i3pqv")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2hs0m")
 }],
 "loop": 1,
 "name": &"walk",
