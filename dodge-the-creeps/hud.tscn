@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://2lsjdxo8ste"]
+
+[ext_resource type="Script" uid="uid://p6ibb5veqi7l" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://dc7nebgucleey" path="res://fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+
+[sub_resource type="Theme" id="Theme_vrf1b"]
+default_font = ExtResource("2_8sq4i")
+default_font_size = 64
+
+[sub_resource type="Theme" id="Theme_2p4my"]
+default_font = ExtResource("2_8sq4i")
+default_font_size = 64
+
+[sub_resource type="Theme" id="Theme_tnfpo"]
+default_font = ExtResource("2_8sq4i")
+default_font_size = 64
+
+[node name="HUD" type="CanvasLayer" unique_id=825587318]
+script = ExtResource("1_64ctp")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1484296618]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme = SubResource("Theme_vrf1b")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Missatge" type="Label" parent="." unique_id=1690609940]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -0.5
+offset_right = 0.5
+offset_bottom = 159.0
+grow_horizontal = 2
+theme = SubResource("Theme_2p4my")
+text = " Dodge the Creeps!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Label" parent="." unique_id=471322033]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_tnfpo")
+text = "Start"
+horizontal_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1358745381]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
