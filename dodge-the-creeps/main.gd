@@ -4,12 +4,12 @@ var score
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	randomize() # Replace with function body.
-
+	new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(delta: float):
 	pass
 
 
@@ -19,7 +19,7 @@ func game_over() :
 # Replace with function body.
 func new_game():
 	score = 0
-	$Player.start($StartPosition.position)
+	#$Player.start($StartPosition.position)
 	$StartTimer.start()	
 
 
@@ -33,12 +33,15 @@ func _on_score_timer_timeout() :
  # Replace with function body.
 
 
-func _on_MobTimer_timeout():
+
+
+func _on_mob_timer_timeout():
+	
 # Crea una nova instància de l'escena Mob.
-	var mob = mob_scene.instance()
+	var mob = mob_scene.instantiate()
 # Trieu una ubicació aleatòria a Path2D.
-	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
-	mob_spawn_location.offset = randi()
+	var mob_spawn_location:PathFollow2D = get_node("MobPath/MobSpawnLocation")
+	mob_spawn_location.progress_ratio = randf()
 # Estableix la direcció de la multitud perpendicular a la direcció del camí.
 	var direction = mob_spawn_location.rotation + PI / 2
 # Estableix la posició de la multitud a una ubicació aleatòria.
@@ -51,3 +54,4 @@ func _on_MobTimer_timeout():
 	mob.linear_velocity = velocity.rotated(direction)
 # Va fer que la multitud s'afegís a l'escena principal.
 	add_child(mob)
+	print(mob)
