@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c7ob042n7lfks" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://fswweo4dnm4e" path="res://mob.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://2lsjdxo8ste" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://dlteyj38m4nvm" path="res://art/House In a Forest Loop.ogg" id="5_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -48,6 +49,11 @@ curve = SubResource("Curve2D_ig7tw")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=908966029]
 
 [node name="HUD" parent="." unique_id=825587318 instance=ExtResource("4_1bvp3")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1991341285]
+stream = ExtResource("5_lquwl")
+
+[node name="DeathMusic" type="AudioStreamPlayer" parent="." unique_id=115746463]
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
