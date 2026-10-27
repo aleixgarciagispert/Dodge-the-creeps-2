@@ -1,5 +1,5 @@
 extends Area2D
-signal hit
+signal hit(player)
 
 @export var speed = 400 # A quina velocitat es mourà el jugador (píxels/seg).
 var screen_size # Mida de la finestra de joc.
@@ -39,9 +39,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) :
-	hide() # El jugador desapareix després de ser impactat.
-	emit_signal("hit")
-	# S'ha d'ajornar, ja que no podem canviar les propietats físiques en una crida de retorn de física.
+	hide()
+	hit.emit(self)
 	$CollisionShape2D.set_deferred("disabled", true)
 	
 func start(pos):

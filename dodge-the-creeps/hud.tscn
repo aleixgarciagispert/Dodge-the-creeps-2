@@ -18,6 +18,18 @@ default_font_size = 64
 [node name="HUD" type="CanvasLayer" unique_id=825587318]
 script = ExtResource("1_64ctp")
 
+[node name="ScoreLabel2" type="Label" parent="." unique_id=990307309]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 636.0
+offset_right = 5.0
+offset_bottom = 714.0
+grow_horizontal = 2
+theme = SubResource("Theme_vrf1b")
+text = "0"
+horizontal_alignment = 1
+
 [node name="ScoreLabel" type="Label" parent="." unique_id=1484296618]
 anchors_preset = 10
 anchor_right = 1.0
@@ -40,12 +52,19 @@ text = " Dodge the Creeps!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StartButton" type="Label" parent="." unique_id=471322033]
+[node name="StartButton" type="Button" parent="." unique_id=296807602]
+offset_left = 39.0
+offset_top = 614.0
+offset_right = 445.0
+offset_bottom = 674.0
+
+[node name="StartButton_text" type="Label" parent="." unique_id=471322033]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -78.0
+offset_top = -115.0
+offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_tnfpo")
@@ -56,4 +75,5 @@ horizontal_alignment = 1
 wait_time = 2.0
 one_shot = true
 
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

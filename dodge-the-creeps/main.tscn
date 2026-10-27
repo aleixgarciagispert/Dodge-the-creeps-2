@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7cm860jsbmpy" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c7ob042n7lfks" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://fswweo4dnm4e" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cbf472a87pon3" path="res://player_2.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://2lsjdxo8ste" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://dlteyj38m4nvm" path="res://art/House In a Forest Loop.ogg" id="5_lquwl"]
 
@@ -34,8 +35,11 @@ color = Color(7.70092e-06, 0.7750664, 0.7752299, 1)
 [node name="MobTimer" type="Timer" parent="." unique_id=1686355508]
 wait_time = 0.5
 
-[node name="Player" parent="." unique_id=1769878077 instance=ExtResource("1_ig7tw")]
-position = Vector2(231, 341)
+[node name="Player_2" parent="." unique_id=1769878077 instance=ExtResource("3_7mycd")]
+position = Vector2(304, 488)
+
+[node name="Player" parent="." unique_id=668553831 instance=ExtResource("1_ig7tw")]
+position = Vector2(192, 368)
 
 [node name="StartTimer" type="Timer" parent="." unique_id=59505291]
 wait_time = 2.0
@@ -56,7 +60,6 @@ stream = ExtResource("5_lquwl")
 [node name="DeathMusic" type="AudioStreamPlayer" parent="." unique_id=115746463]
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
-[connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

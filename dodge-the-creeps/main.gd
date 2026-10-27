@@ -1,12 +1,29 @@
 extends Node
 @export var mob_scene: PackedScene
-var score
+var score_1 = 0
+var score_2 = 0
+var alive_1 = false
+var alive_2 = false
+const START_POS_1 = Vector2(192, 368)
+const START_POS_2 = Vector2(304, 488)
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize() # Replace with function body.
-	new_game()
+	randomize()
+	$Player.hit.connect(_on_player_hit)
+	$Player_2.hit.connect(_on_player_hit)
+
+
+func _on_player_hit(player):
+	if player == $Player:
+		alive_1 = false
+	else:
+		alive_2 = false
+	# Només acaba el joc quan moren els dos.
+	if not alive_1 and not alive_2:
+		game_over()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
@@ -21,11 +38,16 @@ func game_over() :
 	$DeathMusic.play()
 # Replace with function body.
 func new_game():
+	
 	$DeathMusic.stop()
-	score = 0
-	$HUD.update_score(score)
+	score_1 = 0
+	score_2 = 0
+	alive_1 = true
+	alive_2 = true
+	$HUD.update_score(score_1, score_2)
 	$HUD.show_message("Get Ready")
-	#$Player.start($StartPosition.position)
+	$Player.start(START_POS_1)
+	$Player_2.start(START_POS_2)
 	$StartTimer.start()
 	$Music.play()
 	get_tree().call_group("mobs", "queue_free")
@@ -38,8 +60,12 @@ func _on_start_timer_timeout():
 
 
 func _on_score_timer_timeout() :
-	score += 1
-	$HUD.update_score(score)
+	# Només suma al jugador que segueix viu.
+	if alive_1:
+		score_1 += 1
+	if alive_2:
+		score_2 += 1
+	$HUD.update_score(score_1, score_2)
 
  # Replace with function body.
 
