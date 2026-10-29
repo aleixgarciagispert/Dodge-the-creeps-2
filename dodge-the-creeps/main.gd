@@ -37,17 +37,21 @@ func game_over() :
 	$Music.stop()
 	$DeathMusic.play()
 # Replace with function body.
-func new_game():
-	
+func new_game(num_players):
 	$DeathMusic.stop()
 	score_1 = 0
 	score_2 = 0
 	alive_1 = true
-	alive_2 = true
+	alive_2 = num_players == 2
 	$HUD.update_score(score_1, score_2)
+	$HUD/ScoreLabel2.visible = alive_2
 	$HUD.show_message("Get Ready")
 	$Player.start(START_POS_1)
-	$Player_2.start(START_POS_2)
+	if alive_2:
+		$Player_2.start(START_POS_2)
+	else:
+		$Player_2.hide()
+		$Player_2/CollisionShape2D.set_deferred("disabled", true)
 	$StartTimer.start()
 	$Music.play()
 	get_tree().call_group("mobs", "queue_free")

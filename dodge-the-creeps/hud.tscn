@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://p6ibb5veqi7l" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="FontFile" uid="uid://dc7nebgucleey" path="res://fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://bqji6q2gbvh5f" path="res://8377241.png" id="3_8sq4i"]
 
 [sub_resource type="Theme" id="Theme_vrf1b"]
 default_font = ExtResource("2_8sq4i")
@@ -13,7 +14,15 @@ default_font_size = 64
 
 [sub_resource type="Theme" id="Theme_tnfpo"]
 default_font = ExtResource("2_8sq4i")
-default_font_size = 64
+default_font_size = 54
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fivti"]
+bg_color = Color(0.14, 0.126, 0.126, 0.9647059)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0apk2"]
+texture = ExtResource("3_8sq4i")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="HUD" type="CanvasLayer" unique_id=825587318]
 script = ExtResource("1_64ctp")
@@ -52,28 +61,126 @@ text = " Dodge the Creeps!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="StartButton" type="Button" parent="." unique_id=296807602]
-offset_left = 39.0
-offset_top = 614.0
-offset_right = 445.0
-offset_bottom = 674.0
+[node name="setting" type="Button" parent="." unique_id=525295512]
+offset_left = 35.0
+offset_top = 551.0
+offset_right = 441.0
+offset_bottom = 611.0
 
-[node name="StartButton_text" type="Label" parent="." unique_id=471322033]
+[node name="settingsButon" type="Label" parent="setting" unique_id=153523659]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -115.0
-offset_bottom = -37.0
+offset_left = 3.0
+offset_top = -63.0
+offset_right = 3.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_tnfpo")
-text = "Start"
+text = "Multiplayer"
+horizontal_alignment = 1
+
+[node name="multiplayer" type="Button" parent="." unique_id=1128164711]
+offset_left = 36.0
+offset_top = 461.0
+offset_right = 442.0
+offset_bottom = 521.0
+
+[node name="StartButtonM_text" type="Label" parent="multiplayer" unique_id=1195457253]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -63.0
+offset_right = 3.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_tnfpo")
+text = "Multiplayer"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=296807602]
+offset_left = 36.0
+offset_top = 366.0
+offset_right = 442.0
+offset_bottom = 426.0
+
+[node name="StartButton_text" type="Label" parent="StartButton" unique_id=471322033]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -63.0
+offset_right = 3.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_tnfpo")
+text = "SinglePlayer"
 horizontal_alignment = 1
 
 [node name="MessageTimer" type="Timer" parent="." unique_id=1358745381]
 wait_time = 2.0
 one_shot = true
 
+[node name="Panel" type="Panel" parent="." unique_id=476109286]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_right = 191.0
+offset_bottom = 440.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fivti")
+
+[node name="VolumeSlider" type="HSlider" parent="Panel" unique_id=1937207730]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 147.0
+offset_right = 319.0
+offset_bottom = 184.0
+
+[node name="Label" type="Label" parent="Panel/VolumeSlider" unique_id=947185462]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 79.0
+offset_bottom = -2.0
+text = "Volumen:"
+
+[node name="FullscreenCheck" type="CheckButton" parent="Panel" unique_id=171426488]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 230.0
+offset_right = 114.0
+offset_bottom = 254.0
+
+[node name="Label" type="Label" parent="Panel/FullscreenCheck" unique_id=1582325093]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 85.0
+offset_bottom = -6.0
+text = "Fullscreen:"
+
+[node name="BackButton" type="Button" parent="Panel" unique_id=1693883183]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 334.0
+offset_right = 78.0
+offset_bottom = 392.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_0apk2")
+
+[connection signal="pressed" from="setting" to="." method="_on_setting_pressed"]
+[connection signal="pressed" from="multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="drag_ended" from="Panel/VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
