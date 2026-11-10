@@ -3,6 +3,7 @@ signal hit(player)
 
 @export var speed = 400 # A quina velocitat es mourà el jugador (píxels/seg).
 var screen_size # Mida de la finestra de joc.
+var invincible = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,6 +40,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) :
+	if invincible: # Mode Zen: no es pot morir.
+		return
 	hide() # El jugador desapareix després de ser impactat.
 	hit.emit(self)
 	# S'ha d'ajornar, ja que no podem canviar les propietats físiques en una crida de retorn de física.

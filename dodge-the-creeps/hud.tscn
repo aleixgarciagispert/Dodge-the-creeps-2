@@ -137,16 +137,19 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -191.0
 offset_right = 191.0
-offset_bottom = 440.0
+offset_bottom = 560.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fivti")
 
 [node name="VolumeSlider" type="HSlider" parent="SettingsPanel" unique_id=1937207730]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 147.0
+offset_top = 60.0
 offset_right = 319.0
-offset_bottom = 184.0
+offset_bottom = 97.0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
 [node name="Label" type="Label" parent="SettingsPanel/VolumeSlider" unique_id=947185462]
 layout_mode = 0
@@ -159,9 +162,9 @@ text = "Volumen:"
 [node name="FullscreenCheck" type="CheckButton" parent="SettingsPanel" unique_id=171426488]
 layout_mode = 0
 offset_left = 70.0
-offset_top = 230.0
+offset_top = 150.0
 offset_right = 114.0
-offset_bottom = 254.0
+offset_bottom = 174.0
 
 [node name="Label" type="Label" parent="SettingsPanel/FullscreenCheck" unique_id=1582325093]
 layout_mode = 0
@@ -171,17 +174,74 @@ offset_right = 85.0
 offset_bottom = -6.0
 text = "Fullscreen:"
 
+[node name="MuteCheck" type="CheckButton" parent="SettingsPanel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 225.0
+offset_right = 114.0
+offset_bottom = 249.0
+
+[node name="Label" type="Label" parent="SettingsPanel/MuteCheck"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 85.0
+offset_bottom = -6.0
+text = "Mute:"
+
+[node name="ZenCheck" type="CheckButton" parent="SettingsPanel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 300.0
+offset_right = 114.0
+offset_bottom = 324.0
+
+[node name="Label" type="Label" parent="SettingsPanel/ZenCheck"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 200.0
+offset_bottom = -6.0
+text = "Zen (Esc per sortir):"
+
+[node name="DifficultyOption" type="OptionButton" parent="SettingsPanel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 375.0
+offset_right = 319.0
+offset_bottom = 411.0
+selected = 1
+item_count = 3
+popup/item_0/text = "Fàcil"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Difícil"
+popup/item_2/id = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/DifficultyOption"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -29.0
+offset_right = 120.0
+offset_bottom = -6.0
+text = "Dificultat:"
+
 [node name="BackButton" type="Button" parent="SettingsPanel" unique_id=1693883183]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 334.0
+offset_top = 470.0
 offset_right = 78.0
-offset_bottom = 392.0
+offset_bottom = 528.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_0apk2")
 
 [connection signal="pressed" from="setting" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
-[connection signal="drag_ended" from="SettingsPanel/VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="SettingsPanel/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="SettingsPanel/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="toggled" from="SettingsPanel/MuteCheck" to="." method="_on_mute_check_toggled"]
+[connection signal="toggled" from="SettingsPanel/ZenCheck" to="." method="_on_zen_check_toggled"]
+[connection signal="item_selected" from="SettingsPanel/DifficultyOption" to="." method="_on_difficulty_option_item_selected"]
 [connection signal="pressed" from="SettingsPanel/BackButton" to="." method="_on_back_button_pressed"]
